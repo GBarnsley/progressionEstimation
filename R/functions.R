@@ -179,7 +179,8 @@ fit_progression_rate_model<-function(input_data,
                                      num_cores = 1,
                                      adapt_delta_value = 0.8,
                                      stepsize_value = 1,
-                                     max_treedepth_value = 10) {
+                                     max_treedepth_value = 10,
+                                     seed = 1000) {
   # Validate input
   model_suffix = match.arg(stat_model, c("poisson","negbin"), several.ok = FALSE)
   if ((strain_as_primary_type | strain_as_secondary_type) & !("k_max" %in% names(input_data))) {
@@ -216,6 +217,7 @@ fit_progression_rate_model<-function(input_data,
                     iter = num_iter,
                     cores = num_cores,
                     chains = num_chains,
+                    seed = seed,
                     control = list(adapt_delta = adapt_delta_value,
                                    stepsize = stepsize_value,
                                    max_treedepth = max_treedepth_value)
